@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alien Management</title>
+</head>
+<body>
+    <h1>Alien Management</h1>
+
+    <h2>View Aliens</h2>
+    <button onclick="getAliens()">Get Aliens</button>
+    <table id="aliensTable" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>color</th>
+                <th>brevage</th>
+            </tr>
+        </thead>
+        <tbody id="aliensList"></tbody>
+    </table>
+
+    <h2>Add Alien</h2>
+    <form id="addAlienForm">
+        <label for="alienName">Name:</label>
+        <input type="text" id="alienName" name="alienName" required>
+
+        <label for="alienBeverage">Beverage:</label>
+        <input type="text" id="alienBeverage" name="alienBeverage" required>
+        <label for="alienColor">color:</label>
+        <input type="color" id="alienColor" name="alienColor" required>
+
+        <button type="button" onclick="addAlien()">Add Alien</button>
+    </form>
+
+    <h2>Update Alien</h2>
+    <form id="updateAlienForm">
+        <label for="updateAlienId">ID:</label>
+        <input type="number" id="updateAlienId" name="updateAlienId" required>
+
+        <label for="updatedAlienName">Updated Name:</label>
+        <input type="text" id="updatedAlienName" name="updatedAlienName" required>
+
+        <label for="updatedAlienBeverage">Updated Beverage:</label>
+        <input type="text" id="updatedAlienBeverage" name="updatedAlienBeverage" required>
+
+        <button type="button" onclick="updateAlien()">Update Alien</button>
+    </form>
+
+    <h2>Delete Alien</h2>
+    <form id="deleteAlienForm">
+        <label for="deleteAlienId">ID:</label>
+        <input type="number" id="deleteAlienId" name="deleteAlienId" required>
+
+        <button type="button" onclick="deleteAlien()">Delete Alien</button>
+    </form>
+
+    <script>
+        function getAliens() {
+            fetch('http://localhost:3000/api/aliens')
+                .then(response => response.json())
+                .then(data => {
+                    displayAliens(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayAliens(aliens) {
+            const aliensList = document.getElementById('aliensList');
+
+            aliensList.innerHTML = '';
+
+            aliens.forEach(alien => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${alien.id}</td>
+                    <td>${alien.name}</td>
+                    <td>${alien.color}</td>
+                    <td>${alien.beverage}</td>
+                `;
+                aliensList.appendChild(row);
+            });
+        }
+
+        function addAlien() {
+            const name = document.getElementById('alienName').value;
+            const beverage = document.getElementById('alienBeverage').value;
+            const color = document.getElementById('alienColor').value;
+
+            fetch('http://localhost:3000/api/aliens', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, beverage,color }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`Alien ${data.name} added successfully!`);
+                getAliens();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function updateAlien() {
+            const id = document.getElementById('updateAlienId').value;
+            const name = document.getElementById('updatedAlienName').value;
+            const beverage = document.getElementById('updatedAlienBeverage').value;
+
+            fetch(`http://localhost:3000/api/aliens/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, beverage }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`Alien ${data.name} updated successfully!`);
+                getAliens();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function deleteAlien() {
+            const id = document.getElementById('deleteAlienId').value;
+
+            fetch(`http://localhost:3000/api/aliens/${id}`, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                getAliens();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

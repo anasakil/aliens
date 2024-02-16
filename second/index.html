@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GLYXA</title>
+
+    <link rel="shortcut icon" type="image/png" href="assets/logo1.png" />
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link
+      href="http://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script type='text/javascript' src='jquery.particleground.js'></script>
+    <script type='text/javascript' src='js/demo.js'></script>
+
+
+  </head>
+
+  <body>
+  
+   
+    <section>
+      <header >
+        <a href="index.html">
+          <img src="assets/logo1.png" alt="logo" class="logo" />
+        </a>
+
+        <ul>
+          <li><a href="index.html">home</a></li>
+          <li><a href="dashboard.html">dashboard</a></li>
+          <li><a href="team.html">team</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </header>
+
+      <main>
+        <h1 style="margin-left: 110px">
+          Choose Your Planet: <span id="changingName">Earth</span>
+        </h1>
+
+        <div class="planet-container">
+          <a class="az" href="reserver.html">
+            <img class="planet" src="téléchargement.png" alt="Planet 1" />
+          </a>
+          <a class="az" href="reserver.html">
+            <img
+              style="width: 90%"
+              class="planet"
+              src="téléchargement2.png"
+              alt="Planet 2"
+            />
+          </a>
+          <a class="az" href="reserver.html">
+            <img
+              style="width: 90%"
+              class="planet"
+              src="téléchargement3.png"
+              alt="Planet 3"
+            />
+          </a>
+        </div>
+      </main>
+    </section>
+
+    <footer>&copy; 2024 - Space Explorers Inc. All rights reserved.</footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var options = {
+          strings: ["Pandora ", "Tatooine", "Krypton"], // Add more planet names as needed
+          typeSpeed: 80, // Typing speed in milliseconds
+          backSpeed: 80, // Backspacing speed in milliseconds
+          loop: true, // Set to true for continuous looping
+        };
+
+        var typed = new Typed("#changingName", options);
+      });
+    </script>
+  </body>
+</html>

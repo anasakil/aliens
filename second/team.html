@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" type="image/png" href="assets/logo1.png">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />
+    <style>
+        
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: calc(33.33% - 20px); /* 33.33% width for three cards in a row */
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 40px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <section>
+        <header>
+            <a href="#">
+                <img src="assets/logo1.png" alt="logo" class="logo">
+            </a>
+
+            <ul>          <li><a href="index.html">home</a></li>
+
+                <li><a href="dashboard.html">dashboard</a></li>
+          <li><a href="team.html">team</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </header>
+        <div class="card-container">
+            <div class="card">
+                <img src="assets/360_F_184851803_zXKXrx3mQZND0ujeoSqvZEuXpvnAVCxL-removebg-preview.png" alt="Alex Johnson">
+                <h2>Moulida Yahya</h2>
+                <p>UX/UI Designer</p>
+            </div>
+    
+            <div class="card">
+                <img src="assets/dd.png" alt="Elaroussi fatima">
+                <h2>Elaroussi fatima</h2>
+                <p>Back-end Developer</p>
+            </div>
+    
+            <div class="card">
+                <img src="michelle.jpg" alt="Michelle Lee">
+                <h2>Rajae Laalalma</h2>
+                <p>UX/UI Designer</p>
+            </div>
+    
+            <div class="card">
+                <img src="michelle.jpg" alt="Michelle Lee">
+                <h2>ANAS AKIL</h2>
+                <p>full stack  developer</p>
+            </div>
+    
+            <div class="card">
+                <img src="michelle.jpg" alt="Michelle Lee">
+                <h2>younes sakhno </h2>
+                <p>Back-end Developer</p>
+            </div>
+    
+            <div class="card">
+                <img src="michelle.jpg" alt="Michelle Lee">
+                <h2>khawla</h2>
+                <p>UX/UI Designer</p>
+            </div>
+    
+        </div>
+    
+    </section>
+
+    
+    
+    <footer>&copy; 2024 - Space Explorers Inc. All rights reserved.</footer>
+
+    
+</body>
+</html>

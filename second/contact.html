@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLYXA</title>
+
+    <link rel="shortcut icon" type="image/png" href="assets/logo1.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        section {
+            display: flex;
+            align-items: center; /* Align items vertically in the section */
+        }
+
+        .contact-form {
+            background-color: #e45a84;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            margin-right: 20px; /* Add margin to create space between the form and the image */
+        }
+
+        .form-input {
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            background-color: #fff;
+            color: #e45a84;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #e45a84;
+            color: #fff;
+        }
+
+        .logo {
+            max-width: 100px;
+        }
+
+        .side-image {
+            max-width: 2200px; /* Set the maximum width for the image */
+            animation: floatAnimation 1s infinite alternate; /* Animation */
+        }
+
+        @keyframes floatAnimation {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-25px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <header>
+            <a href="#">
+                <img src="assets/logo1.png" alt="logo" class="logo">
+            </a>
+
+            <ul>
+                <li><a href="index.html">home</a></li>
+
+                <li><a href="dashboard.html">dashboard</a></li>
+                <li><a href="team.html">team</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </header>
+
+        <div class="contact-form">
+            <h2 style="color: #fff;">Contact Us</h2>
+            <form>
+                <input class="form-input" type="text" placeholder="Your Name">
+                <input class="form-input" type="email" placeholder="Your Email">
+                <textarea class="form-input" rows="4" placeholder="Your Message"></textarea>
+                <button class="submit-btn" type="submit">Submit</button>
+            </form>
+        </div>
+
+        <img src="FF.png" alt="side image" class="side-image">
+    </section>
+    <footer>&copy; 2024 - Space Explorers Inc. All rights reserved.</footer>
+</body>
+</html>

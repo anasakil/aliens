@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLYXA</title>
+
+    <link rel="shortcut icon" type="image/png" href="assets/logo1.png">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <style>
+select {
+    width: 150px;
+    padding: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+label {
+    display: block;
+}
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="circle"></div>
+        <header>
+            <a href="#">
+                <img src="assets/logo1.png" alt="logo" class="logo">
+            </a>
+
+            <ul>
+                <li><a href="index.html">home</a></li>
+
+                <li><a href="dashboard.html">dashboard</a></li>
+                <li><a href="team.html">team</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </header>
+
+        <div class="content">
+            <div class="text-box">
+                <form action="">
+                    <div class="form-group">
+                        <div>
+                            <label for="alienName">Name:</label>
+                            <input type="text" id="alienName" name="alienName" required>
+                        </div>
+                        <div>
+                            <label for="alientype">Type:</label>
+                            <select id="alientype" name="alientype" required>
+                                <option value="Xenomorphs">Xenomorphs</option>
+                                <option value="E.T. the Extra-Terrestria">E.T. the Extra-Terrestria</option>
+                                <option value="Vulcans">Vulcans</option>
+                            </select>
+                        </div>
+
+                      
+
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                       
+                        
+                            <input type="radio" id="male" name="gender" value="male" required>
+                            <label for="male">Male</label>
+
+                            <input type="radio" id="female" name="gender" value="female" required>
+                            <label for="female">Female</label>
+                        
+
+
+                    </div>
+                    <div class="selected-image-info">
+                        Selected type: <strong>(none)</strong>
+                    </div>
+                    <button style="animation: pulse 2s infinite;
+                    transition: background-color 0.3s ease;" type="button" onclick="addAlien()">RESERVER</button>
+            </div>
+            <div class="img-box">
+                <img src="assets/img_2826-removebg-preview.png" alt="main img" class="starbucks">
+            </div>
+        </div>
+        <ul class="thumb">
+            <li>
+                <img src="assets/rr.png" alt="thumb1"
+                    onmousemove="imgSlider('assets/360_F_184851803_zXKXrx3mQZND0ujeoSqvZEuXpvnAVCxL-removebg-preview.png'); changeCircleColor('#017143')"
+                    ,
+                    onclick="selectImage('assets/360_F_184851803_zXKXrx3mQZND0ujeoSqvZEuXpvnAVCxL-removebg-preview.png', '#017143')">
+            </li>
+            <li>
+                <img src="assets/harira-soup-bowl-isolated-on-260nw-1378212992-removebg-preview.png" alt="thumb2"
+                    onmousemove="imgSlider('assets/harira-soup-bowl-isolated-on-260nw-1378212992-removebg-preview.png'); changeCircleColor('#d86d09bb')"
+                    ,
+                    onclick="selectImage('assets/harira-soup-bowl-isolated-on-260nw-1378212992-removebg-preview.png', '#eb7495')">
+            </li>
+            <li>
+                <img src="assets/img_2826-removebg-preview.png" alt="thumb3"
+                    onmousemove="imgSlider('assets/img_2826-removebg-preview.png'); changeCircleColor('#E45A84')" ,
+                    onclick="selectImage('assets/img_2826-removebg-preview.png', '#d752b1')">
+            </li>
+        </ul>
+        </form>
+
+
+        <ul class="social">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        </ul>
+    </section>
+    <script>
+        function selectImage(imageUrl, circleColor , price) {
+            let selectedImagePrice = 0;
+
+            const selectedImageInfo = document.querySelector('.selected-image-info');
+            selectedImageInfo.innerHTML = `Selected type: <img src="${imageUrl}" alt="Selected" width="20" height="20">`;
+            selectedImagePrice = price;
+
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'selectedImage';
+            hiddenInput.value = imageUrl;
+            const form = document.querySelector('form');
+            form.appendChild(hiddenInput);
+
+        }
+        function addAlien() {
+        const name = document.getElementById('alienName').value;
+        const type = document.getElementById('alientype').value;
+        const gender = document.querySelector('input[name="gender"]:checked');
+        const planet = "Pandora ";
+        const imageUrl = document.querySelector('input[name="selectedImage"]').value;
+        
+        const selectedImagePrice = 10; 
+
+        if (!name || !type || !gender || !imageUrl) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill in all fields and select an image.'
+            });
+            return;
+        }
+
+        const selectedGender = gender.value;
+
+        fetch('http://localhost:3000/api/aliens', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, type, imageUrl, planet, gender: selectedGender }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                Swal.fire({
+                    icon: 'success',
+                    title: `Order confirmed !`,
+                    text: `Hi  ${data.name} !\n your order is pending: $${selectedImagePrice}`,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = 'index.html';
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'An error occurred. Please try again later.'
+                });
+            });
+    }
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
